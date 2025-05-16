@@ -118,7 +118,13 @@ app.post('/add-bid', async(req,res)=>{
   res.send(bidData)
 })
 
-
+    // get all bids data for a specific user
+    app.get('/bids/:email', async(req, res)=>{
+      const email = req.params.email;
+      const query = {email:email}
+      const result = await bidsCollection.find(query).toArray()
+      res.send(result)
+    })
 
 
     // Send a ping to confirm a successful connection
